@@ -47,7 +47,7 @@ public class CategoryService {
 
     @Transactional(readOnly = true)
     public CategoryDto findByName(String title) {
-        return categoryMapper.toCategoryDto(categoryDao.findByName(title).orElse(null));
+        return categoryMapper.toCategoryDto(categoryDao.findByTitle(title).orElse(null));
     }
 
     public List<CategoryDto> findAll() {

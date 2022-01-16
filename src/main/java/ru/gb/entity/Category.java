@@ -9,6 +9,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,6 +28,19 @@ public class Category {
 
     @Column(name = "title")
     private String title;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Product> products;
+
+    public boolean addProduct(Product product) {
+        if (products == null) {
+            products = new HashSet<>();
+        }
+        return products.add(product);
+    }
 
     @Version
     @Column(name = "VERSION")
@@ -48,6 +63,7 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", products" + products + '\'' +
                 '}';
     }
 }

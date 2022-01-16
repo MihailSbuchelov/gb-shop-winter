@@ -43,7 +43,8 @@ public class ManufacturerService {
 
 
     public List<ManufacturerDto> findAll() {
-        return manufacturerDao.findAll().stream().map(manufacturerMapper::toManufacturerDto).collect(Collectors.toList());
+        return manufacturerDao.findAll().stream().map(manufacturerMapper::toManufacturerDto)
+                .collect(Collectors.toList());
     }
 
     public void deleteById(Long id) {

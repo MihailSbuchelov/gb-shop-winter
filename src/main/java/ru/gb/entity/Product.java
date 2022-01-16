@@ -12,6 +12,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -32,9 +33,16 @@ public class Product {
     private BigDecimal cost;
     @Column(name = "manufacture_date")
     private LocalDate manufactureDate;
+
     @ManyToOne
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
+
+    @ManyToMany
+    @JoinTable(name = "product_category",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Set<Category> categories;
 
     @Version
     @Column(name = "VERSION")
@@ -62,8 +70,9 @@ public class Product {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", cost=" + cost +
+                ", categories=" + categories +
                 ", manufactureDate=" + manufactureDate +
-//                ", manufacturer=" + manufacturer.getName() +
+                ", manufacturer=" + manufacturer.getName() +
                 "}\n";
     }
 }

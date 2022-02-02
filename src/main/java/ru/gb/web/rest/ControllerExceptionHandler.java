@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import ru.gb.common.exception.mapper.NoSuchCategoryException;
+import ru.gb.common.exception.mapper.NoSuchManufacturerException;
 
 import java.util.NoSuchElementException;
 
@@ -12,10 +14,9 @@ import java.util.NoSuchElementException;
 @Slf4j
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(NoSuchElementException.class)
+    @ExceptionHandler({NoSuchCategoryException.class, NoSuchManufacturerException.class})
     public ResponseEntity<?> validationErrorHandler(NoSuchElementException e) {
-        log.debug(e.getMessage());
-
+        log.trace(e.getMessage());
         return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
     }
 }

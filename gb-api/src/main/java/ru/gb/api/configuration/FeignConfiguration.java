@@ -14,8 +14,8 @@ import ru.gb.api.product.api.ProductGateway;
 @Configuration
 @EnableConfigurationProperties(GbApiProperties.class)
 @RequiredArgsConstructor
-@EnableFeignClients
 @Import(value = {FeignClientFactory.class})
+@EnableFeignClients
 public class FeignConfiguration {
 
     private final GbApiProperties gbApiProperties;

@@ -42,7 +42,6 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{categoryId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("categoryId") Long id) {
         categoryGateway.deleteById(id);
     }

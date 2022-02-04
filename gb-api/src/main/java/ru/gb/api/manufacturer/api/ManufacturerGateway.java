@@ -1,6 +1,5 @@
 package ru.gb.api.manufacturer.api;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +9,7 @@ import ru.gb.api.manufacturer.dto.ManufacturerDto;
 
 import java.util.List;
 
+@FeignClient(url = "http://127.0.0.1:8080/internal/api/v1/manufacturer", name = "ManufacturerGateway")
 public interface ManufacturerGateway {
 
     @GetMapping

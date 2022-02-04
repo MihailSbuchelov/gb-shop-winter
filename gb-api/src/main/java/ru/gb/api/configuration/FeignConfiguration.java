@@ -2,6 +2,7 @@ package ru.gb.api.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -13,6 +14,7 @@ import ru.gb.api.product.api.ProductGateway;
 @Configuration
 @EnableConfigurationProperties(GbApiProperties.class)
 @RequiredArgsConstructor
+@EnableFeignClients
 @Import(value = {FeignClientFactory.class})
 public class FeignConfiguration {
 

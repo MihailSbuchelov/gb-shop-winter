@@ -7,7 +7,7 @@ import ru.gb.api.orders.dto.OrdersDto;
 
 public interface OrdersGateway {
     @GetMapping("/{ordersId}")
-    ResponseEntity<?> getOrders(@PathVariable("OrdersId") Long id);
+    ResponseEntity<?> getOrders(@PathVariable("ordersId") Long id);
 
     @PostMapping
     ResponseEntity<?> handlePost(@Validated @RequestBody OrdersDto ordersDto);
